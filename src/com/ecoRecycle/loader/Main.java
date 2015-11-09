@@ -7,8 +7,10 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import com.ecoRecycle.helper.RcmStatus;
+import com.ecoRecycle.model.Administrator;
 import com.ecoRecycle.model.Location;
 import com.ecoRecycle.model.Rcm;
+import com.ecoRecycle.repository.AdministratorRepository;
 
 public class Main
 {
@@ -17,14 +19,20 @@ public class Main
     	Main main = new Main();
 
         /* Add few employee records in database */
-       // Integer locId = main.addLocation("Santa Clara");
+       //Integer locId = main.addLocation("Santa Clara");
         //System.out.println("Location created --- " + locId);
     	
-    	Integer rcmId = main.addRcm();
-    	System.out.println("RCM created --- " + rcmId);
+    	//Integer rcmId = main.addRcm();
+    	//System.out.println("RCM created --- " + rcmId);
        
-    	
+       AdministratorRepository adminRepo = new AdministratorRepository();
+       Integer adminId = adminRepo.addUser("Lakshitha" , "Lakshitha123");
+       System.out.println("Admin Created --- " + adminId);
+       adminRepo.getUser("lakshitha", "lakshitha123");
+       adminRepo.getUser("lakshitha", "lakshitha");
     }
+    
+    
     
     public Integer addLocation(String city){
         Session session = HibernateLoader.getSessionFactory().openSession();
